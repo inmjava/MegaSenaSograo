@@ -81,6 +81,7 @@
 												<include name="mega*.jar" />
 											</fileset>
 										</copy>
+										<delete dir="megatmp"/>
 									</tasks>
 								</configuration>
 								<goals>
