@@ -32,7 +32,7 @@
 		<profile>
 			<id>generateJar</id>
 			<build>
-				<directory>mega</directory>
+				<directory>megatmp</directory>
 				<resources>
 					<resource>
 						<directory>src</directory>
@@ -61,6 +61,31 @@
 								<configuration>
 									<outputDirectory>${project.build.directory}/lib</outputDirectory>
 								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+						<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+									<tasks>
+										<copy todir="exe/lib" flatten="true">
+											<fileset dir="megatmp/lib">
+												<include name="**/*.*" />
+											</fileset>
+										</copy>
+										<copy todir="exe/" flatten="true">
+											<fileset dir="megatmp">
+												<include name="mega*.jar" />
+											</fileset>
+										</copy>
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
 							</execution>
 						</executions>
 					</plugin>
